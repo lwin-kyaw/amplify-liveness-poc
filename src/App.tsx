@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { ThemeProvider } from '@aws-amplify/ui-react';
+import { Amplify } from 'aws-amplify';
+import '@aws-amplify/ui-react/styles.css';
+import awsexports from './aws-exports';
+import { Completion } from './Completion';
+import { Liveness } from './Liveness';
+import { AnalysisResult } from './utils/interfaces';
 
-function App() {
+Amplify.configure(awsexports);
+
+export default function App() {
+  const [livnessResult, setLivenessResult] = useState<AnalysisResult | null>(null);
+  const [analysisStatus, setAnalysisStatus] = useState<string | undefined>();
+
+  const onTryAgain = () => {
+    setLivenessResult(null);
+  }
+
+  const onCompleteAnalysis = (result: AnalysisResult, error?: string) => {
+    setLivenessResult(result);
+    setAnalysisStatus(error);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      {
+        livnessResult 
+          ? <Completion result={livnessResult} onTryAgain={onTryAgain} statusText={analysisStatus} /> 
+          : <Liveness onCancelAnalysis={onTryAgain} onCompleteAnalysis={onCompleteAnalysis}/>
+      }
+    </ThemeProvider>
   );
 }
-
-export default App;

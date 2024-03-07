@@ -1,0 +1,49 @@
+.completion-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+}
+
+.completion-container .big-text {
+  font-weight: 500;
+  font-size: 1.1rem;
+  line-height: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.completion-container .result-text {
+  max-width: 350px;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  line-height: 1rem;
+  color: darkgray;
+}
+
+.completion-container .success {
+  color: green;
+}
+
+.completion-container .error {
+  color: red;
+}
+
+.completion-container button {
+  margin: 0.5rem;
+  padding: 0.3rem 1rem;
+  font-size: 0.9rem;
+  border: 0.1px solid gainsboro;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.completion-container button:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
