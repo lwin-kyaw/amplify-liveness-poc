@@ -4,6 +4,7 @@ import { FaceLivenessDetector } from "@aws-amplify/ui-react-liveness";
 import { LivenessError } from "@aws-amplify/ui-react-liveness/dist/types/components/FaceLivenessDetector/service";
 import { AnalysisResult } from "./utils/interfaces";
 import { get } from "aws-amplify/api";
+import "./liveness.css";
 
 interface ILivenessProps {
   onCompleteAnalysis: (result: AnalysisResult, error?: string) => void;
@@ -67,7 +68,7 @@ export function Liveness({ onCompleteAnalysis }: ILivenessProps) {
     onCompleteAnalysis("Failed", error.error.message);
   };
   return (
-    <>
+    <div className="liveness-container">
       {loading ? (
         <Loader />
       ) : (
@@ -82,6 +83,6 @@ export function Liveness({ onCompleteAnalysis }: ILivenessProps) {
           <Heading level={2}>{success}</Heading>
         </div>
       )}
-    </>
+    </div>
   );
 }

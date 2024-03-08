@@ -16,7 +16,7 @@
       "function": {
         "livenesspoc6fcd328a": {
           "deploymentBucketName": "amplify-livenesspoc-dev-142107-deployment",
-          "s3Key": "amplify-builds/livenesspoc6fcd328a-6d3465416f566b686e67-build.zip"
+          "s3Key": "amplify-builds/livenesspoc6fcd328a-4539422b357072564e55-build.zip"
         }
       },
       "auth": {
@@ -24,6 +24,12 @@
       },
       "api": {
         "livenesspocapi": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2hiogiiod5fp3",
+          "type": "manual"
+        }
       }
     }
   }

@@ -46,15 +46,16 @@ app.get("/sessions/result", async function (req, res) {
     return res.status(400).json({ success: false, message: "missing required params: sessionId" })
   }
   const rekognition = getRekognitionClient();
-  const response = await rekognition.getFaceLivenessSessionResults({
+  const { Confidence } = await rekognition.getFaceLivenessSessionResults({
     SessionId: sessionId,
   });
 
   const confidenceThreashold = 90;
-  const isLive = response.Confidence > confidenceThreashold;
+  const isLive = Confidence > confidenceThreashold;
 
   res.status(200).json({
-    confidence: response.confidence,
+    sessionId,
+    confidence: Confidence,
     isLive,
     confidenceThreashold
   });
